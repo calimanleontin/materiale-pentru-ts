@@ -1,0 +1,39 @@
+hist TABLE M1,0,5,20
+initial X1,0
+initial X2,0
+initial X3,0
+
+GENERATE (EXPONENTIAL(1,0,10))
+SAVEVALUE 1+,1
+QUEUE coada_proiecte1
+SEIZE programator1
+DEPART coada_proiecte1
+ADVANCE 4,1
+RELEASE programator1
+SAVEVALUE 1-,1
+
+SAVEVALUE 2+,1
+QUEUE coada_proiecte2
+SEIZE programator2
+DEPART coada_proiecte2
+ADVANCE (NORMAL(1,5,1))
+RELEASE programator2
+SAVEVALUE 2-,1
+
+SAVEVALUE 3+,1
+QUEUE coada_proiecte3
+SEIZE programator3
+DEPART coada_proiecte3
+myFunc FUNCTION RN4,D5
+0.25,1/0.65,3/0.85,4/0.95,5/1,6
+ADVANCE FN$myFunc 
+RELEASE programator3
+SAVEVALUE 3-,1
+TABULATE hist
+TERMINATE 0
+
+GENERATE 1000
+TERMINATE 1 
+
+
+
